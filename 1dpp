@@ -1,0 +1,14 @@
+#!/bin/sh -u
+
+base="https://api.onedrive.com/v1.0"
+authorization_path="$HOME/.config/1dpp/authorization"
+authorization="$(cat "$authorization_path")"
+
+case "$1" in
+	push)
+		curl -fH "$authorization" -T "$2" "$base/drive/root:$3:/content" >/dev/null
+		;;
+	pull)
+		curl -fH "$authorization" -Lo "$3" "$base/drive/root:$2:/content"
+		;;
+esac
