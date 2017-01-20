@@ -1,8 +1,16 @@
-#!/bin/sh -u
+#!/bin/sh -eu
 
 base="https://api.onedrive.com/v1.0"
 authorization_path="$HOME/.config/1dpp/authorization"
-authorization="$(cat "$authorization_path")"
+
+if [ "$1" = "auth" ]; then
+	mkdir -p "$(dirname "$authorization_path")"
+	echo 'https://login.live.com/oauth20_authorize.srf?client_id=917e07ac-1a04-4e74-a779-123b22062ac3&scope=onedrive.readwrite&response_type=token&redirect_uri=https://wh0.github.io/1dpp/return.html'
+	head -n1 >"$authorization_path"
+	exit
+fi
+
+authorization="Authorization: bearer $(cat "$authorization_path")"
 
 case "$1" in
 	push)
@@ -10,5 +18,9 @@ case "$1" in
 		;;
 	pull)
 		curl -fH "$authorization" -Lo "$3" "$base/drive/root:$2:/content"
+		;;
+	*)
+		echo "Unrecognized command $1" >&2
+		exit 1
 		;;
 esac

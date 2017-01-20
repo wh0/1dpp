@@ -1,0 +1,25 @@
+<!doctype html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+	body {
+		margin: 1.5em 1.5em;
+		max-width: 37em;
+	}
+	#t {
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+		word-break: break-all;
+	}
+</style>
+<textarea id="t" readonly autofocus rows="14"></textarea>
+<script>
+	var t = document.getElementById('t');
+	var m = /access_token=([^&]*)/.exec(location.hash);
+	if (m) {
+		t.value = decodeURIComponent(m[1]);
+	}
+	t.onfocus = function (e) {
+		t.select();
+	};
+</script>
