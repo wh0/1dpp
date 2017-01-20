@@ -7,5 +7,4 @@ Usage:
 
 Needs curl.
 
-To authenticate, visit https://dev.onedrive.com/auth/msa_oauth.htm#try-it-now.
-Click "Get Token," then put the header (`Authorization: bearer ...`) in `~/.config/1dpp/authorization`.
+To authenticate, run `1dpp auth`, open the link, copy paste the access token, and press enter.
