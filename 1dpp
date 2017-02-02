@@ -5,7 +5,7 @@ authorization_path="$HOME/.config/1dpp/authorization"
 
 if [ "$1" = "auth" ]; then
 	mkdir -p "$(dirname "$authorization_path")"
-	echo 'https://login.live.com/oauth20_authorize.srf?client_id=917e07ac-1a04-4e74-a779-123b22062ac3&scope=onedrive.readwrite&response_type=token&redirect_uri=https://wh0.github.io/1dpp/return.html'
+	echo 'https://login.live.com/oauth20_authorize.srf?client_id=917e07ac-1a04-4e74-a779-123b22062ac3&scope=onedrive.readwrite&response_type=token&redirect_uri=https%3A%2F%2Fwh0.github.io%2F1dpp%2Freturn.html'
 	head -n1 >"$authorization_path"
 	exit
 fi
